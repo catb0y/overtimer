@@ -27,14 +27,16 @@ def overtimer():
     os.system('clear')
     date = raw_input("\nWhich day are you recording? Please use format MMM DD YYYY \n")
 
-    date_sorted = datetime.strptime(date, '%b %d %Y' ).date()  # is not sorted
+    date_sorted = datetime.strptime(date, '%b %d %Y' ).date()  
     hours = float(raw_input("""\nHow many hours did you work? If it was a weekend, simply type '0'.
 If you worked on the weekend, be ashamed of yourself, then log your hours normally. \n"""))
 
     if hours > 8.5:
         overtime = hours - 8.5
-    else:
+    elif hours == 0:
         overtime = "weekend"
+    else:
+        overtime = 0
 
     file = open('overtimer.csv', "a")
     writing = csv.writer(file, delimiter=';', quotechar='"', quoting=csv.QUOTE_ALL)
@@ -56,5 +58,5 @@ start()
 
 
 # ISSUES:
-# Not in order
+# Dates not in order
 # you can update only the latest csv you created
